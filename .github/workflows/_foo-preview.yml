@@ -1,0 +1,32 @@
+name: Reusable Workflow
+
+on:
+  workflow_call:
+    inputs:
+      stack_env:
+        description: 'The environment to deploy to'
+        required: true
+        type: string
+        default: 'dev'
+      dummy_parameter:
+        description: 'A dummy parameter for testing'
+        required: false
+        type: string
+        default: 'default-value'
+
+jobs:
+  preview:
+    environment: ${{ inputs.stack_env }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Echo dummy parameter
+        run: |
+          echo "Received dummy parameter: ${{ inputs.dummy_parameter }}"
+  deploy:
+    uses: ./.github/workflows/_foo-deploy.yml
+    needs: preview
+    with:
+      another_parameter: 'value-from-reusable-workflow'
+    secrets:
+      FOOBAR: ${{ secrets.FOOBAR }}

@@ -1,0 +1,28 @@
+name: Sub workflow
+
+on:
+  workflow_call:
+    inputs:
+      stack_env:
+        description: 'The environment to deploy to'
+        required: true
+        type: string
+        default: 'dev'
+      another_parameter:
+        description: 'Another parameter for testing'
+        required: false
+        type: string
+        default: 'another-default-value'
+    secrets:
+      FOOBAR:
+        description: 'A secret parameter'
+        required: false
+jobs:
+  sub_process:
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.stack_env }}_deploy
+    steps:
+      - name: Echo another parameter
+        run: |
+          echo "Received another parameter: ${{ inputs.another_parameter }}"
+          echo "Received FOOBAR secret: ${{ secrets.FOOBAR }}"

@@ -1,0 +1,16 @@
+name: Main Workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  pulumi:
+    strategy:
+      matrix:
+        stack_env: [ dev, qa, prod ]
+    uses: ./.github/workflows/_foo-preview.yml
+    with:
+      stack_env: ${{ matrix.stack_env }}
+      dummy_parameter: 'test-value-from-main-workflow'
