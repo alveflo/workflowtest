@@ -10,6 +10,7 @@ on:
         default: 'default-value'
 
 jobs:
+  environment: dev
   process:
     runs-on: ubuntu-latest
     steps:
@@ -19,7 +20,6 @@ jobs:
           echo "Received dummy parameter: ${{ inputs.dummy_parameter }}"
   trigger-sub:
     uses: ./.github/workflows/sub-workflow.yml
-    environment: dev
     with:
       another_parameter: 'value-from-reusable-workflow'
       FOOBAR: ${{ secrets.FOOBAR }}
