@@ -12,6 +12,7 @@ on:
 jobs:
   process:
     runs-on: ubuntu-latest
+    environment: dev
     steps:
       - name: Echo dummy parameter
         run: |
@@ -20,3 +21,4 @@ jobs:
     uses: ./.github/workflows/sub-workflow.yml
     with:
       another_parameter: 'value-from-reusable-workflow'
+      FOOBAR: ${{ secrets.FOOBAR }}
