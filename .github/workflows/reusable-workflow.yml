@@ -12,12 +12,12 @@ on:
 jobs:
   process:
     runs-on: ubuntu-latest
-    environment: dev
     steps:
       - name: Echo dummy parameter
         run: |
           echo "Received dummy parameter: ${{ inputs.dummy_parameter }}"
   trigger-sub:
+    environment: dev
     uses: ./.github/workflows/sub-workflow.yml
     with:
       another_parameter: 'value-from-reusable-workflow'
