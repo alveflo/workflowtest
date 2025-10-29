@@ -12,7 +12,6 @@ on:
 jobs:
   process:
     runs-on: ubuntu-latest
-    environment: dev
     steps:
       - uses: actions/checkout@v3
       - name: Echo dummy parameter
@@ -20,6 +19,7 @@ jobs:
           echo "Received dummy parameter: ${{ inputs.dummy_parameter }}"
   trigger-sub:
     uses: ./.github/workflows/sub-workflow.yml
+    environment: dev
     with:
       another_parameter: 'value-from-reusable-workflow'
       FOOBAR: ${{ secrets.FOOBAR }}
