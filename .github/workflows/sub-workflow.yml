@@ -8,6 +8,10 @@ on:
         required: false
         type: string
         default: 'another-default-value'
+      FOOBAR:
+        description: 'A secret parameter'
+        required: false
+        type: string
 jobs:
   sub_process:
     runs-on: ubuntu-latest
@@ -16,3 +20,4 @@ jobs:
       - name: Echo another parameter
         run: |
           echo "Received another parameter: ${{ inputs.another_parameter }}"
+          echo "Received FOOBAR secret: ${{ inputs.FOOBAR }}"
