@@ -15,7 +15,7 @@ on:
 jobs:
   sub_process:
     runs-on: ubuntu-latest
-    # environment: dev_deploy
+    environment: dev_deploy
     steps:
       - name: Echo another parameter
         run: |
