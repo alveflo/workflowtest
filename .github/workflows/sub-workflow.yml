@@ -1,0 +1,17 @@
+name: Sub workflow
+
+on:
+  workflow_call:
+    inputs:
+      another_parameter:
+        description: 'Another parameter for testing'
+        required: false
+        type: string
+        default: 'another-default-value'
+jobs:
+  sub_process:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Echo another parameter
+        run: |
+          echo "Received another parameter: ${{ inputs.another_parameter }}"
