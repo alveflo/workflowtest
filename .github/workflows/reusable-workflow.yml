@@ -9,6 +9,8 @@ on:
         type: string
         default: 'default-value'
 
+permissions: {}
+
 jobs:
   process:
     runs-on: ubuntu-latest

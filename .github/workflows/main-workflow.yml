@@ -5,6 +5,8 @@ on:
     branches:
       - main
 
+permissions: {}
+
 jobs:
   trigger-reusable:
     uses: ./.github/workflows/reusable-workflow.yml
