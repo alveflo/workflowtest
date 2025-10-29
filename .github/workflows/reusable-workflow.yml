@@ -22,5 +22,5 @@ jobs:
     uses: ./.github/workflows/sub-workflow.yml
     with:
       another_parameter: 'value-from-reusable-workflow'
-      secrets:
-        FOOBAR: ${{ secrets.FOOBAR }}
+    secrets:
+      FOOBAR: ${{ secrets.FOOBAR }}
