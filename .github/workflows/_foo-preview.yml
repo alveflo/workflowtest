@@ -27,6 +27,7 @@ jobs:
     uses: ./.github/workflows/_foo-deploy.yml
     needs: preview
     with:
+      stack_env: ${{ inputs.stack_env }}
       another_parameter: 'value-from-reusable-workflow'
     secrets:
       FOOBAR: ${{ secrets.FOOBAR }}
