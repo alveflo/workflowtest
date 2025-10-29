@@ -18,7 +18,7 @@ on:
         description: 'A secret parameter'
         required: false
 jobs:
-  sub_process:
+  deploy:
     runs-on: ubuntu-latest
     environment: ${{ inputs.stack_env }}_deploy
     steps:
