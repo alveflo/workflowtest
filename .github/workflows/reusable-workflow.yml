@@ -19,10 +19,7 @@ jobs:
         run: |
           echo "Received dummy parameter: ${{ inputs.dummy_parameter }}"
   trigger-sub:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: ./.github/workflows/sub-workflow.yml
-        with:
-          another_parameter: 'value-from-reusable-workflow'
-          # FOOBAR: ${{ secrets.FOOBAR }}
+    uses: ./.github/workflows/sub-workflow.yml
+    with:
+      another_parameter: 'value-from-reusable-workflow'
+      # FOOBAR: ${{ secrets.FOOBAR }}
