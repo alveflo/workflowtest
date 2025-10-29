@@ -18,8 +18,10 @@ jobs:
       - name: Echo dummy parameter
         run: |
           echo "Received dummy parameter: ${{ inputs.dummy_parameter }}"
-      - name: trigger-sub
-        uses: ./.github/workflows/sub-workflow.yml
+  trigger-sub:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: ./.github/workflows/sub-workflow.yml
         with:
           another_parameter: 'value-from-reusable-workflow'
           # FOOBAR: ${{ secrets.FOOBAR }}
