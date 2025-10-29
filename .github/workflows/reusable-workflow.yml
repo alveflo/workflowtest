@@ -17,6 +17,7 @@ jobs:
         run: |
           echo "Received dummy parameter: ${{ inputs.dummy_parameter }}"
   trigger-sub:
+    runs-on: ubuntu-latest
     environment: dev
     uses: ./.github/workflows/sub-workflow.yml
     with:
