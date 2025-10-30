@@ -6,7 +6,17 @@ on:
       - main
 
 jobs:
+  build:
+    steps:
+      - name: Build Step
+        run: echo "Building..."
+  test:
+    needs: build
+    steps:
+      - name: Test Step
+        run: echo "Testing..."
   pulumi:
+    needs: test
     strategy:
       matrix:
         stack_env: [ dev, qa, prod ]
