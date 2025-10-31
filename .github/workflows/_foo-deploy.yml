@@ -25,11 +25,7 @@ jobs:
       - name: Echo another parameter
         run: |
           echo "Received another parameter: ${{ inputs.another_parameter }}"
-          echo "Received FOOBAR secret: ${{ secrets.FOOBAR }}"
       - name: Check secret
+        if: ${{ secrets.FOOBAR != '' }}
         run: |
-          if [ -z "${{ secrets.FOOBAR }}" ]; then
-            echo "FOOBAR is empty or not set"
-          else
-            echo "FOOBAR has a value"
-          fi
+          echo "FOOBAR secret is set."

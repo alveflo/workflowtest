@@ -41,33 +41,6 @@ jobs:
     uses: ./.github/workflows/_foo-deploy.yml
     with:
       stack_env: dev
-    secrets: inherit
-  
-  preview-qa:
-    needs: pulumi
-    uses: ./.github/workflows/_foo-preview.yml
-    with:
-      stack_env: qa
-    secrets: inherit
-        
-  deploy-qa:
-    needs: preview-qa
-    uses: ./.github/workflows/_foo-deploy.yml
-    with:
-      stack_env: qa
-    secrets: inherit
-
-  preview-prod:
-    needs: pulumi
-    uses: ./.github/workflows/_foo-preview.yml
-    with:
-      stack_env: prod
-    secrets: inherit
-
-  deploy-prod:
-    needs: preview-prod
-    uses: ./.github/workflows/_foo-deploy.yml
-    with:
-      stack_env: prod
-    secrets:
+    secrets: 
       FOOBAR: ${{ secrets.FOOBAR }}
+  
