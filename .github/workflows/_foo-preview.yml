@@ -29,5 +29,4 @@ jobs:
     with:
       stack_env: ${{ inputs.stack_env }}
       another_parameter: 'value-from-reusable-workflow'
-    secrets:
-      FOOBAR: ${{ secrets.FOOBAR }}
+    secrets: inherit
