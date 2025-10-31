@@ -41,6 +41,4 @@ jobs:
     uses: ./.github/workflows/_foo-deploy.yml
     with:
       stack_env: dev
-    secrets: 
-      FOOBAR: ${{ secrets.FOOBAR }}
-  
+    secrets: inherit

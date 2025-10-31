@@ -13,10 +13,6 @@ on:
         required: false
         type: string
         default: 'another-default-value'
-    secrets:
-      FOOBAR:
-        description: 'A secret parameter for testing'
-        required: true
 jobs:
   deploy:
     runs-on: ubuntu-latest
