@@ -32,6 +32,7 @@ jobs:
   preview-dev:
     needs: pulumi
     uses: ./.github/workflows/_foo-preview.yml
+    runs-on: ubuntu-latest
     environment: dev
     with:
       stack_env: dev
@@ -39,6 +40,7 @@ jobs:
         
   deploy-dev:
     needs: preview-dev
+    runs-on: ubuntu-latest
     uses: ./.github/workflows/_foo-deploy.yml
     environment: dev
     with:
