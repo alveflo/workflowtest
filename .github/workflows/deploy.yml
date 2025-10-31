@@ -17,30 +17,30 @@ jobs:
     steps:
       - name: Test Step
         run: echo "Testing..."
-  pulumi:
-    needs: test
-    runs-on: ubuntu-latest
-    environment: ${{ matrix.stack_env }}
-    strategy:
-      matrix:
-        stack_env: [ dev, qa, prod ]
-    steps:
-      - uses: actions/checkout@v3
-      - name: Pulumi Step
-        run: echo "Pulumi operations for ${{ matrix.stack_env }}"
+  # pulumi:
+  #   needs: test
+  #   runs-on: ubuntu-latest
+  #   environment: ${{ matrix.stack_env }}
+  #   strategy:
+  #     matrix:
+  #       stack_env: [ dev, qa, prod ]
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #     - name: Pulumi Step
+  #       run: echo "Pulumi operations for ${{ matrix.stack_env }}"
 
   preview:
-    needs: pulumi
+    # needs: pulumi
     uses: ./.github/workflows/_foo.yml
     with:
-      stack_env: ${{ matrix.stack_env }}
+      stack_env: dev
       action: 'preview'
     secrets: inherit
   deploy:
     needs: preview
     uses: ./.github/workflows/_foo.yml
     with:
-      stack_env: ${{ matrix.stack_env }}
+      stack_env: dev
       action: 'deploy'
     secrets: inherit
 
