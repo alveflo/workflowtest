@@ -28,18 +28,33 @@ jobs:
       - uses: actions/checkout@v3
       - name: Pulumi Step
         run: echo "Pulumi operations for ${{ matrix.stack_env }}"
-        
-  preview-dev:
+
+  preview:
     needs: pulumi
-    uses: ./.github/workflows/_foo-preview.yml
+    uses: ./.github/workflows/_foo.yml
     with:
-      stack_env: dev
+      stack_env: ${{ matrix.stack_env }}
+      action: 'preview'
+    secrets: inherit
+  deploy:
+    needs: preview
+    uses: ./.github/workflows/_foo.yml
+    with:
+      stack_env: ${{ matrix.stack_env }}
+      action: 'deploy'
     secrets: inherit
 
-  deploy-dev:
-    needs: preview-dev
-    uses: ./.github/workflows/_foo-deploy.yml
-    with:
-      stack_env: dev
-    secrets: inherit
-      # FOOBAR: ${{ secrets.FOOBAR }}
+  # preview-dev:
+  #   needs: pulumi
+  #   uses: ./.github/workflows/_foo-preview.yml
+  #   with:
+  #     stack_env: dev
+  #   secrets: inherit
+
+  # deploy-dev:
+  #   needs: preview-dev
+  #   uses: ./.github/workflows/_foo-deploy.yml
+  #   with:
+  #     stack_env: dev
+  #   secrets: inherit
+  #     # FOOBAR: ${{ secrets.FOOBAR }}

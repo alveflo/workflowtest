@@ -1,0 +1,32 @@
+name: Reausable workflow 
+
+on:
+  workflow_call:
+    inputs:
+      stack_env:
+        description: 'The environment to deploy to'
+        required: true
+        type: string
+        default: 'dev'
+      action:
+        description: 'The action to perform'
+        required: true
+        type: string
+        default: 'preview'
+
+jobs:
+  require-approval:
+    runs-on: ubuntu-latest
+    if: ${{ inputs.action == 'deploy' }}
+    environment: ${{ inputs.stack_env }}_deploy
+    steps:
+      - name: Request approval
+        run: echo "Requesting approval for ${{ inputs.action }} in ${{ inputs.stack_env }}"
+
+  deploy: 
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.stack_env }}
+    steps:
+      - name: Perform action
+        run: |
+          echo "Performing ${{ inputs.action }} for environment ${{ inputs.stack_env }}"
