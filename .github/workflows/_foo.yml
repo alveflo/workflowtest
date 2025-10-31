@@ -17,7 +17,7 @@ on:
 jobs:
   require-approval:
     runs-on: ubuntu-latest
-    if: ${{ inputs.action == 'deploy' }}
+    if: ${{ inputs.action == 'preview' }}
     environment: ${{ inputs.stack_env }}_deploy
     steps:
       - name: Request approval
