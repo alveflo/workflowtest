@@ -16,17 +16,9 @@ on:
 
 jobs:
   preview:
-    environment: ${{ inputs.stack_env }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - name: Echo dummy parameter
         run: |
           echo "Received dummy parameter: ${{ inputs.dummy_parameter }}"
-  deploy:
-    uses: ./.github/workflows/_foo-deploy.yml
-    needs: preview
-    with:
-      stack_env: ${{ inputs.stack_env }}
-      another_parameter: 'value-from-reusable-workflow'
-    secrets: inherit

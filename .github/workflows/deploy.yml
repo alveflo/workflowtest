@@ -29,10 +29,10 @@ jobs:
       - name: Pulumi Step
         run: echo "Pulumi operations for ${{ matrix.stack_env }}"
       - name: Preview
-        uses: ./_foo.preview.yml
+        uses: ./.github/workflows/_foo.preview.yml
         with:
           stack_env: ${{ matrix.stack_env }}
       - name: Deploy
-        uses: ./_foo.deploy.yml
+        uses: ./.github/workflows/_foo.deploy.yml
         with:
           stack_env: ${{ matrix.stack_env }}
