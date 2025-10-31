@@ -26,6 +26,8 @@ jobs:
         run: |
           echo "Received another parameter: ${{ inputs.another_parameter }}"
       - name: Check secret
-        if: ${{ env.secrets.FOOBAR != '' }}
+        env:
+          FOOBAR: ${{ secrets.FOOBAR }}
+        if: ${{ env.FOOBAR != '' }}
         run: |
           echo "FOOBAR secret is set."
