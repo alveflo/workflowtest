@@ -32,6 +32,7 @@ jobs:
   preview-dev:
     needs: pulumi
     uses: ./.github/workflows/_foo-preview.yml
+    environment: dev
     with:
       stack_env: dev
     secrets: inherit
@@ -39,7 +40,8 @@ jobs:
   deploy-dev:
     needs: preview-dev
     uses: ./.github/workflows/_foo-deploy.yml
+    environment: dev
     with:
       stack_env: dev
-    secrets:
-      FOOBAR: ${{ secrets.FOOBAR }}
+    secrets: inherit
+      # FOOBAR: ${{ secrets.FOOBAR }}
