@@ -19,10 +19,20 @@ jobs:
         run: echo "Testing..."
   pulumi:
     needs: test
+    runs-on: ubuntu-latest
+    environment: ${{ matrix.stack_env }}
     strategy:
       matrix:
         stack_env: [ dev, qa, prod ]
-    uses: ./.github/workflows/_foo-preview.yml
-    with:
-      stack_env: ${{ matrix.stack_env }}
-      dummy_parameter: 'test-value-from-main-workflow'
+    steps:
+      - uses: actions/checkout@v3
+      - name: Pulumi Step
+        run: echo "Pulumi operations for ${{ matrix.stack_env }}"
+      - name: Preview
+        uses: ./_foo.preview.yml
+        with:
+          stack_env: ${{ matrix.stack_env }}
+      - name: Deploy
+        uses: ./_foo.deploy.yml
+        with:
+          stack_env: ${{ matrix.stack_env }}
