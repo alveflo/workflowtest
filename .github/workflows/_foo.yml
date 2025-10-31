@@ -16,12 +16,10 @@ on:
 
 jobs:
   require-approval:
-    runs-on: ubuntu-latest
-    if: ${{ inputs.action == 'preview' }}
-    environment: ${{ inputs.stack_env }}_deploy
-    steps:
-      - name: Request approval
-        run: echo "Requesting approval for ${{ inputs.action }} in ${{ inputs.stack_env }}"
+    if: ${{ inputs.action == 'deploy' }}
+    uses: ./.github/workflows/_gate.yml
+    with:
+      gate_param: ${{ inputs.stack_env }}
 
   deploy: 
     needs: require-approval
