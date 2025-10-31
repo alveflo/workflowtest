@@ -1,0 +1,18 @@
+name: Gate Workflow
+
+on:
+  workflow_call:
+    inputs:
+      gate_param:
+        description: 'The environment to gate'
+        required: true
+        type: string
+        default: 'dev'
+
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.gate_param }}_deploy
+    steps:
+      - name: Gate Step
+        run: echo "Gating for ${{ inputs.gate_param }}"
