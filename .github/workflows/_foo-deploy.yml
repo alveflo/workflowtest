@@ -13,10 +13,6 @@ on:
         required: false
         type: string
         default: 'another-default-value'
-    secrets:
-      FOOBAR:
-        description: 'A secret parameter'
-        required: false
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -26,3 +22,10 @@ jobs:
         run: |
           echo "Received another parameter: ${{ inputs.another_parameter }}"
           echo "Received FOOBAR secret: ${{ secrets.FOOBAR }}"
+      - name: Check secret
+        run: |
+          if [ -z "${{ secrets.FOOBAR }}" ]; then
+            echo "FOOBAR is empty or not set"
+          else
+            echo "FOOBAR has a value"
+          fi
