@@ -24,6 +24,7 @@ jobs:
         run: echo "Requesting approval for ${{ inputs.action }} in ${{ inputs.stack_env }}"
 
   deploy: 
+    if: ${{ inputs.action != 'deploy' || always() }}
     needs: require-approval
     runs-on: ubuntu-latest
     environment: ${{ inputs.stack_env }}
